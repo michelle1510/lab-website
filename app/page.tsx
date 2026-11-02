@@ -12,6 +12,7 @@ import profileData from "@/data/profiles.json";
 import type { Article } from "@/app/types/article";
 import type { Profile } from "@/app/types/profile";
 import Carousel from "@/components/Carousel";
+import { imagePath } from "@/lib/paths";
 
 const articles: Article[] = articlesData;
 const profiles: Profile[] = profileData;
@@ -56,7 +57,7 @@ export default function Home() {
           {/* Image */}
             <Image
               className="h-auto w-[20%] max-w-sm object-fit"
-              src="/logo.svg"
+              src={imagePath("/logo.svg")}
               alt="Nav graphic"
               width={50}
               height={50}

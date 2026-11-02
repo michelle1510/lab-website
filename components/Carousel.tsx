@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import * as motion from 'motion/react-client';
+import { imagePath } from '@/lib/paths';
 
 const images = [
   '/gallery/images-1.jpeg',
@@ -26,13 +27,13 @@ export default function Carousel() {
           >
             {[0, 1].map((group) => (
               <div key={group} className="flex shrink-0 gap-4 pr-4">
-                {images.map((imagePath, index) => (
+                {images.map((src, index) => (
                   <div
                     key={`${group}-${index}`}
                     className="flex size-56 shrink-0 items-center justify-center overflow-hidden"
                   >
                     <Image
-                      src={imagePath}
+                      src={imagePath(src)}
                       alt="Gallery image"
                       width={600}
                       height={600}

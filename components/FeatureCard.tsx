@@ -2,6 +2,7 @@
 
 import {Article} from '@/app/types/article';
 import Image from 'next/image';
+import { imagePath } from '@/lib/paths';
 
 interface FeatureCardProps {
     article: Article;
@@ -13,7 +14,7 @@ export default function FeatureCard({article}: FeatureCardProps) {
             shadow-[0_0_10px_2px_color-mix(in_srgb,var(--accent)_50%,transparent)] hover:shadow-[0_0_15px_3px_color-mix(in_srgb,var(--accent)_65%,transparent)]">
       <div className="relative p-4">
         <Image
-          src={article.img}
+          src={imagePath(article.img)}
           alt={article.title}
           width={200}
           height={200}
