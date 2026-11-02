@@ -2,6 +2,7 @@
 
 import {Profile} from '@/app/types/profile';
 import Image from 'next/image';
+import { imagePath } from '@/lib/paths';
 
 interface ProfileCardProps {
     profile: Profile;
@@ -13,7 +14,7 @@ export default function ProfileCard({profile}: ProfileCardProps) {
             shadow-[0_0_10px_2px_color-mix(in_srgb,var(--accent)_50%,transparent)] hover:shadow-[0_0_15px_3px_color-mix(in_srgb,var(--accent)_65%,transparent)]">
       <div className="flex flex-col items-center p-2">
         <Image
-          src={profile.img}
+          src={imagePath(profile.img)}
           alt={profile.name}
           width={150}
           height={150}
