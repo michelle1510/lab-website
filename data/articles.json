@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "title": "Article 1",
+        "authors": ["Bob", "Jason"],
+        "date": "10/14/2026",
+        "themes": ["Eye-tracking", "Politics"],
+        "img": "/articles/coordinate-plane-point-A.jpg"
+    },
+    {
+        "id": 2,
+        "title": "Article 2",
+        "authors": ["Mary", "Neil"],
+        "date": "10/02/2026",
+        "themes": ["Non Eye-tracking", "Education"],
+        "img": "/articles/line-graph.png"
+    },
+    {
+        "id": 3,
+        "title": "Article 3",
+        "authors": ["Sally", "Tom"],
+        "date": "08/19/2026",
+        "themes": ["Eye-tracking", "Memory"],
+        "img": "/articles/Polynomial_of_degree_three.png"
+    }
+]

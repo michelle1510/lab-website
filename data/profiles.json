@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "name": "Jason Coronel",
+        "role": "Principal Investigator",
+        "description": "My research is focused on __",
+        "img": "/people/placeholder.png"
+    },
+    {
+        "id": 2,
+        "name": "Mary Jane",
+        "role": "Graduate Student",
+        "description": "I am interested in the correlation between",
+        "img": "/people/placeholder.png"
+    },
+    {
+        "id": 3,
+        "name": "Bob Dylan",
+        "role": "Undergraduate Research Assistant",
+        "description": "I assist with various experiments on",
+        "img": "/people/placeholder.png"
+    },
+    {
+        "id": 4,
+        "name": "Nat Smith",
+        "role": "Undergraduate Research Assistant",
+        "description": "I assist with other various experiments on",
+        "img": "/people/placeholder.png"
+    }
+]
