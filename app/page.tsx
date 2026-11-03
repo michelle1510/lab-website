@@ -20,43 +20,60 @@ const profiles: Profile[] = profileData;
 export default function Home() {
   const [navOpen, setNavOpen] = useState(false)
 
+  // On phones the sidebar slides over the page; from md up it pushes content aside.
+  const sectionPad = `px-6 sm:px-10 lg:px-20 transition-all duration-300 ease-in-out ${
+    navOpen ? "md:pl-[16rem] lg:pl-[18rem]" : ""
+  }`;
+  const sectionClass = `flex flex-col w-full gap-6 py-16 md:py-30 text-center sm:items-start sm:text-left ${sectionPad}`;
+
+  // Close the menu after tapping a link, but only on small screens.
+  const closeOnMobile = () => {
+    if (window.innerWidth < 768) setNavOpen(false);
+  };
+
   return (
     <div className="flex min-h-screen flex-col bg-background">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <div className="min-h-screen w-full">
       {/* Navigation */}
-      <div id="hero" className="relative flex h-[clamp(400px,50vh,720px)] w-full justify-center bg-primary">
-        <aside 
-          className={`fixed left-0 top-0 z-40 w-56 transition-transform duration-300 ease-in-out ${
-          navOpen ? "translate-x-0" : "-translate-x-full"
-          }`}
-        >
-          <Sidebar/>
-          <button
-            onClick={() => setNavOpen(!navOpen)}
-            className="absolute right-5 top-2 z-50 text-accent text-accent transition-all hover:[text-shadow:0_0_5px_#D4C2FC,0_0_15px_#D4C2FC]">
-            x
-          </button>
-        </aside>
-        <button 
-          onClick={() => setNavOpen(!navOpen)}
-          className="absolute left-5 top-2 z-50 text-accent">
-            {!navOpen && <span className="text-4xl sm:text-4xl md:text-4xl lg:text-5xl transition-all hover:[text-shadow:0_0_5px_#D4C2FC,0_0_15px_#D4C2FC]">
-            &#9776;
-            </span>}
+      <aside
+        className={`fixed left-0 top-0 z-40 w-56 transition-transform duration-300 ease-in-out ${
+        navOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <Sidebar onNavigate={closeOnMobile}/>
+        <button
+          onClick={() => setNavOpen(false)}
+          aria-label="Close menu"
+          className="absolute right-2 top-2 z-50 flex size-11 items-center justify-center text-2xl text-accent transition-all hover:[text-shadow:0_0_5px_#D4C2FC,0_0_15px_#D4C2FC]">
+          ×
         </button>
+      </aside>
+      {/* Dims the page behind the menu on phones; tap to close */}
+      {navOpen && (
+        <div
+          className="fixed inset-0 z-30 bg-black/40 md:hidden"
+          onClick={() => setNavOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+      {!navOpen && (
+        <button
+          onClick={() => setNavOpen(true)}
+          aria-label="Open menu"
+          className="absolute left-3 top-3 z-50 flex size-11 items-center justify-center text-4xl text-accent transition-all hover:[text-shadow:0_0_5px_#D4C2FC,0_0_15px_#D4C2FC] lg:text-5xl">
+          &#9776;
+        </button>
+      )}
+
+      <div id="hero" className="relative flex h-[clamp(320px,50vh,720px)] w-full justify-center bg-primary">
         {/* Title */}
-        <div className={`flex w-full min-h-[50vh] items-center justify-between gap-4 transition-all duration-300 ease-in-out ${
-          navOpen
-            ? "pl-[16.5rem] pr-10 sm:pl-[16.5rem] sm:pr-10 lg:pl-[19rem] lg:pr-20"
-            : "px-10 sm:px-10 lg:px-20"
-        }`}>
+        <div className={`flex w-full items-center justify-between gap-4 ${sectionPad}`}>
           <h1 className="text-[clamp(1.875rem,4vw,3rem)] font-semibold leading-tight tracking-tight text-white">
             The Human Signals Lab
           </h1>
           {/* Image */}
             <Image
-              className="h-auto w-[20%] max-w-sm object-fit"
+              className="h-auto w-[25%] max-w-sm object-fit sm:w-[20%]"
               src={imagePath("/logo.svg")}
               alt="Nav graphic"
               width={50}
@@ -68,11 +85,7 @@ export default function Home() {
       {/* Main content */}
       <main className="flex w-full flex-1 flex-col items-center bg-background">
         {/* About */}
-        <div id="about" className={`flex flex-col w-full gap-6 py-30 text-center sm:items-start sm:text-left pl-16 transition-all duration-300 ease-in-out sm:items-start ${
-        navOpen
-          ? "px-4 pl-[15rem] sm:px-8 sm:pl-[16rem] lg:px-16 lg:pl-[18rem]"
-          : "px-0"
-        }`}>
+        <div id="about" className={sectionClass}>
           <h2 className="max-w-2xl text-3xl font-semibold leading-tight tracking-tight text-primary">
             About
           </h2>
@@ -81,60 +94,74 @@ export default function Home() {
             information through eye-tracking and computational methods.
           </p>
           <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-            <Button href="">Our Research</Button>
-            <Button href="" variant="secondary">Contact Us</Button>
+            <Button href="#publications">Our Research</Button>
+            <Button href="#contact" variant="secondary">Contact Us</Button>
           </div>
         {/* Gallery */}
-        <div className="w-full pt-50">
+        <div className="w-full pt-12 md:pt-50">
           <Carousel/>
         </div>
         </div>
         {/* Publications */}
-        <div id="publications" className={`flex flex-col w-full py-30 pl-16 gap-6 text-center sm:items-start sm:text-left transition-all duration-300 ease-in-out sm:items-start ${
-          navOpen
-            ? "px-4 pl-[15rem] sm:px-8 sm:pl-[16rem] lg:px-16 lg:pl-[18rem]"
-            : "px-0"
-          }`}>
+        <div id="publications" className={sectionClass}>
           <h2 className="max-w-2xl text-3xl font-semibold leading-tight tracking-tight text-primary">
             Publications
           </h2>
           <p className="max-w-xl text-lg leading-8 text-foreground">
             Our research spans machine-learning, politics, etc
           </p>
-          <h1 className="text-xl text-primary">
+          <h3 className="text-xl text-primary">
             Featured
-          </h1>
-          <div className="flex w-full flex-wrap items-center gap-4">
-            <FeatureCard article={articlesData[0]}/>
-            <FeatureCard article={articlesData[1]}/>
-            <FeatureCard article={articlesData[2]}/>
-            <Link className="ml-4 self-end hover:underline" href="#publications">Explore more {'>'}</Link>
+          </h3>
+          <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <FeatureCard article={articles[0]}/>
+            <FeatureCard article={articles[1]}/>
+            <FeatureCard article={articles[2]}/>
           </div>
+          <Link className="self-center hover:underline sm:self-end" href="#publications">Explore more {'>'}</Link>
         </div>
         {/* People */}
-        <div id="people" className={`flex flex-col w-full py-30 pl-16 gap-6 text-center sm:items-start sm:text-left transition-all duration-300 ease-in-out sm:items-start ${
-          navOpen
-            ? "px-4 pl-[15rem] sm:px-8 sm:pl-[16rem] lg:px-16 lg:pl-[18rem]"
-            : "px-0"
-          }`}>
+        <div id="people" className={sectionClass}>
           <h2 className="max-w-2xl text-3xl font-semibold pb-4 leading-tight tracking-tight text-primary">
             People
           </h2>
-          <div className="flex w-full flex-wrap items-center gap-2">
+          <div className="flex w-full flex-wrap justify-center gap-4 sm:justify-start">
             {profiles.map((profile) => (
               <ProfileCard key={profile.id} profile={profile} />
             ))}
           </div>
         </div>
         {/* Contact */}
-        <div id="contact" className={`flex flex-col w-full py-30 pl-16 gap-6 text-center sm:items-start sm:text-left transition-all duration-300 ease-in-out sm:items-start ${
-          navOpen
-            ? "px-4 pl-[15rem] sm:px-8 sm:pl-[16rem] lg:px-16 lg:pl-[18rem]"
-            : "px-0"
-          }`}>
+        <div id="contact" className={sectionClass}>
           <h2 className="max-w-2xl text-3xl font-semibold leading-tight tracking-tight text-primary">
             Contact
           </h2>
+          <div className="grid w-full gap-8 text-lg leading-8 text-foreground md:grid-cols-[2fr_1fr] md:gap-12">
+            <p className="max-w-xl">
+              The Human Signals Lab is a research laboratory within the School of Communication at The Ohio State University in Columbus, OH.
+            </p>
+            <address className="flex flex-col gap-6 not-italic">
+              <div>
+                <div className="text-xs font-medium uppercase tracking-wider text-foreground/60">Location</div>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=242+W+18th+Avenue+Columbus+OH+43210"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-secondary hover:underline"
+                >
+                  Building 046<br />
+                  242 W 18th Avenue<br />
+                  Columbus, OH 43210
+                </a>
+              </div>
+              <div>
+                <div className="text-xs font-medium uppercase tracking-wider text-foreground/60">Email</div>
+                <a href="mailto:email@osu.edu" className="hover:text-secondary hover:underline">
+                  email@osu.edu
+                </a>
+              </div>
+            </address>
+          </div>
         </div>
       </main>
 

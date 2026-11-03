@@ -8,7 +8,7 @@ const ibmPlexSans = IBM_Plex_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Your Research Lab",
+  title: "The Human Signals Lab",
   description: "Eye-tracking and research laboratory",
 };
 

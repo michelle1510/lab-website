@@ -3,7 +3,11 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-export default function Sidebar() {
+interface SidebarProps {
+  onNavigate?: () => void;
+}
+
+export default function Sidebar({ onNavigate }: SidebarProps) {
   const [isHeroVisible, setIsHeroVisible] = useState(true);
 
   useEffect(() => {
@@ -27,10 +31,10 @@ export default function Sidebar() {
   return (
     <nav className="sticky top-0 pl-8 pt-20 h-screen z-50 bg-white/50 bg-opacity-30 backdrop-blur-lg">
       <div className={`flex flex-col gap-4 transition-colors duration-200 ${textColor}`}>
-        <Link className={`transition-all ${hoverStyle}`} href="#about">About</Link>
-        <Link className={`transition-all ${hoverStyle}`} href="#publications">Publications</Link>
-        <Link className={`transition-all ${hoverStyle}`} href="#people">People</Link>
-        <Link className={`transition-all ${hoverStyle}`} href="#contact">Contact</Link>
+        <Link onClick={onNavigate} className={`py-1 transition-all ${hoverStyle}`} href="#about">About</Link>
+        <Link onClick={onNavigate} className={`py-1 transition-all ${hoverStyle}`} href="#publications">Publications</Link>
+        <Link onClick={onNavigate} className={`py-1 transition-all ${hoverStyle}`} href="#people">People</Link>
+        <Link onClick={onNavigate} className={`py-1 transition-all ${hoverStyle}`} href="#contact">Contact</Link>
       </div>
     </nav>
   );
