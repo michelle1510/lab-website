@@ -7,6 +7,9 @@ import type { ComponentProps } from 'react';
 const VARIANTS = {
   primary: 'bg-primary text-white hover:bg-secondary',
   secondary: 'border border-secondary text-primary hover:bg-accent',
+  // For dark backgrounds like the hero
+  light: 'bg-white text-primary hover:bg-accent',
+  ghost: 'border border-white/40 text-white hover:bg-white/10',
   outline: 'border border-gray-300 text-gray-700 hover:bg-gray-50 focus:ring-blue-500',
   danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500',
 };

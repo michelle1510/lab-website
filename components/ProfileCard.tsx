@@ -10,8 +10,7 @@ interface ProfileCardProps {
 
 export default function ProfileCard({profile}: ProfileCardProps) {
   return (
-    <div className="items-center justify-center h-62 w-45 px-4 pt-4 rounded-md bg-gray-50 transition-all duration-200 hover:scale-[1.02]
-            shadow-[0_0_10px_2px_color-mix(in_srgb,var(--accent)_50%,transparent)] hover:shadow-[0_0_15px_3px_color-mix(in_srgb,var(--accent)_65%,transparent)]">
+    <div className="h-62 w-45 rounded-2xl border border-primary/10 bg-white px-4 pt-4 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10">
       <div className="flex flex-col items-center p-2">
         <Image
           src={imagePath(profile.img)}

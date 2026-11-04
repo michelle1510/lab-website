@@ -12,6 +12,7 @@ import profileData from "@/data/profiles.json";
 import type { Article } from "@/app/types/article";
 import type { Profile } from "@/app/types/profile";
 import Carousel from "@/components/Carousel";
+import GazeTrail from "@/components/GazeTrail";
 import { imagePath } from "@/lib/paths";
 
 const articles: Article[] = articlesData;
@@ -48,7 +49,6 @@ export default function Home() {
           ×
         </button>
       </aside>
-      {/* Dims the page behind the menu on phones; tap to close */}
       {navOpen && (
         <div
           className="fixed inset-0 z-30 bg-black/40 md:hidden"
@@ -65,20 +65,39 @@ export default function Home() {
         </button>
       )}
 
-      <div id="hero" className="relative flex h-[clamp(320px,50vh,720px)] w-full justify-center bg-primary">
-        {/* Title */}
-        <div className={`flex w-full items-center justify-between gap-4 ${sectionPad}`}>
-          <h1 className="text-[clamp(1.5rem,4vw,3rem)] font-semibold leading-tight tracking-tight text-white">
-            The Human Signals Lab
-          </h1>
-          {/* Image */}
-            <Image
-              className="h-auto w-[25%] max-w-sm object-fit sm:w-[20%]"
-              src={imagePath("/logo.svg")}
-              alt="Nav graphic"
-              width={50}
-              height={50}
-            />
+      <div
+        id="hero"
+        className="relative isolate flex min-h-[85svh] w-full items-center overflow-hidden bg-primary
+          bg-[radial-gradient(ellipse_at_80%_20%,color-mix(in_srgb,var(--secondary)_70%,transparent),transparent_60%),radial-gradient(ellipse_at_10%_90%,color-mix(in_srgb,var(--accent)_25%,transparent),transparent_55%)]"
+      >
+        <GazeTrail />
+        <div className={`flex w-full flex-col-reverse items-center gap-10 py-24 md:flex-row md:justify-between ${sectionPad}`}>
+          {/* Text */}
+          <div className="flex max-w-2xl flex-col items-center gap-6 text-center md:items-start md:text-left">
+            <p className="text-xs font-medium uppercase tracking-[0.2em] text-accent sm:text-sm">
+              School of Communication · The Ohio State University
+            </p>
+            <h1 className="text-[clamp(2.25rem,6vw,4.5rem)] font-semibold leading-[1.05] tracking-tight text-white">
+              The Human Signals Lab
+            </h1>
+            <p className="max-w-xl text-base leading-7 text-white/80 sm:text-lg sm:leading-8">
+              Exploring how people perceive, process, and interact with
+              information through eye-tracking and computational methods.
+            </p>
+            <div className="flex flex-col gap-4 pt-2 text-base font-medium sm:flex-row">
+              <Button href="#publications" variant="light">Our Research</Button>
+              <Button href="#contact" variant="ghost">Contact Us</Button>
+            </div>
+          </div>
+          {/* Logo */}
+          <Image
+            className="h-auto w-32 shrink-0 drop-shadow-[0_0_40px_color-mix(in_srgb,var(--accent)_45%,transparent)] sm:w-40 md:w-[22%] md:max-w-xs"
+            src={imagePath("/logo.svg")}
+            alt="The Human Signals Lab logo"
+            width={50}
+            height={50}
+            preload
+          />
         </div>
       </div>
 
@@ -89,16 +108,16 @@ export default function Home() {
           <h2 className="max-w-2xl text-2xl sm:text-3xl font-semibold leading-tight tracking-tight text-primary">
             About
           </h2>
-          <p className="max-w-xl text-base leading-7 sm:text-lg sm:leading-8 text-foreground">
-            Exploring how people perceive, process, and interact with
-            information through eye-tracking and computational methods.
-          </p>
-          <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-            <Button href="#publications">Our Research</Button>
-            <Button href="#contact" variant="secondary">Contact Us</Button>
+          <div className="flex max-w-2xl flex-col gap-4 text-base leading-7 sm:text-lg sm:leading-8 text-foreground">
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas.
+            </p>
           </div>
         {/* Gallery */}
-        <div className="w-full pt-12 md:pt-50">
+        <div className="w-full pt-12">
           <Carousel/>
         </div>
         </div>
@@ -118,7 +137,9 @@ export default function Home() {
             <FeatureCard article={articles[1]}/>
             <FeatureCard article={articles[2]}/>
           </div>
-          <Link className="self-center hover:underline sm:self-end" href="#publications">Explore more {'>'}</Link>
+          <Link className="group self-center font-medium text-primary hover:underline sm:self-end" href="#publications">
+            Explore more <span aria-hidden="true" className="inline-block transition-transform group-hover:translate-x-1">→</span>
+          </Link>
         </div>
         {/* People */}
         <div id="people" className={sectionClass}>

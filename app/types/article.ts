@@ -3,5 +3,6 @@ export interface Article {
     img: string;
     title: string;
     authors: string[];
+    date: string; // MM/DD/YYYY
     themes: string[];
 }

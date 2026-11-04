@@ -26,6 +26,36 @@
   }
 }
 
+/* Hero gaze trail: the line draws itself, then each fixation fades in and gently pulses. */
+.gaze-path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: gaze-draw var(--gaze-duration, 5s) ease-in-out forwards;
+}
+.gaze-fixation {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation:
+    gaze-appear 0.6s ease-out var(--gaze-delay, 0s) forwards,
+    gaze-pulse 4s ease-in-out calc(var(--gaze-delay, 0s) + 0.6s) infinite;
+}
+@keyframes gaze-draw {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes gaze-appear {
+  from { opacity: 0; transform: scale(0.4); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes gaze-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gaze-path { animation: none; stroke-dashoffset: 0; }
+  .gaze-fixation { animation: none; opacity: 1; }
+}
+
 body {
   margin: 0;
   background: var(--background);
