@@ -68,7 +68,7 @@ export default function Home() {
       <div id="hero" className="relative flex h-[clamp(320px,50vh,720px)] w-full justify-center bg-primary">
         {/* Title */}
         <div className={`flex w-full items-center justify-between gap-4 ${sectionPad}`}>
-          <h1 className="text-[clamp(1.875rem,4vw,3rem)] font-semibold leading-tight tracking-tight text-white">
+          <h1 className="text-[clamp(1.5rem,4vw,3rem)] font-semibold leading-tight tracking-tight text-white">
             The Human Signals Lab
           </h1>
           {/* Image */}
@@ -86,10 +86,10 @@ export default function Home() {
       <main className="flex w-full flex-1 flex-col items-center bg-background">
         {/* About */}
         <div id="about" className={sectionClass}>
-          <h2 className="max-w-2xl text-3xl font-semibold leading-tight tracking-tight text-primary">
+          <h2 className="max-w-2xl text-2xl sm:text-3xl font-semibold leading-tight tracking-tight text-primary">
             About
           </h2>
-          <p className="max-w-xl text-lg leading-8 text-foreground">
+          <p className="max-w-xl text-base leading-7 sm:text-lg sm:leading-8 text-foreground">
             Exploring how people perceive, process, and interact with
             information through eye-tracking and computational methods.
           </p>
@@ -104,13 +104,13 @@ export default function Home() {
         </div>
         {/* Publications */}
         <div id="publications" className={sectionClass}>
-          <h2 className="max-w-2xl text-3xl font-semibold leading-tight tracking-tight text-primary">
+          <h2 className="max-w-2xl text-2xl sm:text-3xl font-semibold leading-tight tracking-tight text-primary">
             Publications
           </h2>
-          <p className="max-w-xl text-lg leading-8 text-foreground">
+          <p className="max-w-xl text-base leading-7 sm:text-lg sm:leading-8 text-foreground">
             Our research spans machine-learning, politics, etc
           </p>
-          <h3 className="text-xl text-primary">
+          <h3 className="text-lg sm:text-xl text-primary">
             Featured
           </h3>
           <div className="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -122,7 +122,7 @@ export default function Home() {
         </div>
         {/* People */}
         <div id="people" className={sectionClass}>
-          <h2 className="max-w-2xl text-3xl font-semibold pb-4 leading-tight tracking-tight text-primary">
+          <h2 className="max-w-2xl text-2xl sm:text-3xl font-semibold pb-4 leading-tight tracking-tight text-primary">
             People
           </h2>
           <div className="flex w-full flex-wrap justify-center gap-4 sm:justify-start">
@@ -133,10 +133,10 @@ export default function Home() {
         </div>
         {/* Contact */}
         <div id="contact" className={sectionClass}>
-          <h2 className="max-w-2xl text-3xl font-semibold leading-tight tracking-tight text-primary">
+          <h2 className="max-w-2xl text-2xl sm:text-3xl font-semibold leading-tight tracking-tight text-primary">
             Contact
           </h2>
-          <div className="grid w-full gap-8 text-lg leading-8 text-foreground md:grid-cols-[2fr_1fr] md:gap-12">
+          <div className="grid w-full gap-8 text-base leading-7 sm:text-lg sm:leading-8 text-foreground md:grid-cols-[2fr_1fr] md:gap-12">
             <p className="max-w-xl">
               The Human Signals Lab is a research laboratory within the School of Communication at The Ohio State University in Columbus, OH.
             </p>
