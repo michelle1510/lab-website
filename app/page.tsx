@@ -1,8 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Sidebar from '@/components/Sidebar';
-import {useState} from 'react';
+import Navbar from '@/components/Navbar';
 import Link from 'next/link';
 import Button from '@/components/Button';
 import FeatureCard from "@/components/FeatureCard";
@@ -19,51 +18,14 @@ const articles: Article[] = articlesData;
 const profiles: Profile[] = profileData;
 
 export default function Home() {
-  const [navOpen, setNavOpen] = useState(false)
-
-  // On phones the sidebar slides over the page; from md up it pushes content aside.
-  const sectionPad = `px-6 sm:px-10 lg:px-20 transition-all duration-300 ease-in-out ${
-    navOpen ? "md:pl-[16rem] lg:pl-[18rem]" : ""
-  }`;
-  const sectionClass = `flex flex-col w-full gap-6 py-16 md:py-30 text-center sm:items-start sm:text-left ${sectionPad}`;
-
-  // Close the menu after tapping a link, but only on small screens.
-  const closeOnMobile = () => {
-    if (window.innerWidth < 768) setNavOpen(false);
-  };
+  const sectionPad = "px-6 sm:px-10 lg:px-20";
+  // scroll-mt keeps section headings from hiding under the fixed top bar.
+  const sectionClass = `flex flex-col w-full gap-6 py-16 md:py-30 scroll-mt-16 text-center sm:items-start sm:text-left ${sectionPad}`;
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <div className="min-h-screen w-full">
-      {/* Navigation */}
-      <aside
-        className={`fixed left-0 top-0 z-40 w-56 transition-transform duration-300 ease-in-out ${
-        navOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
-      >
-        <Sidebar onNavigate={closeOnMobile}/>
-        <button
-          onClick={() => setNavOpen(false)}
-          aria-label="Close menu"
-          className="absolute right-2 top-2 z-50 flex size-11 items-center justify-center text-2xl text-accent transition-all hover:[text-shadow:0_0_5px_#D4C2FC,0_0_15px_#D4C2FC]">
-          ×
-        </button>
-      </aside>
-      {navOpen && (
-        <div
-          className="fixed inset-0 z-30 bg-black/40 md:hidden"
-          onClick={() => setNavOpen(false)}
-          aria-hidden="true"
-        />
-      )}
-      {!navOpen && (
-        <button
-          onClick={() => setNavOpen(true)}
-          aria-label="Open menu"
-          className="absolute left-3 top-3 z-50 flex size-11 items-center justify-center text-4xl text-accent transition-all hover:[text-shadow:0_0_5px_#D4C2FC,0_0_15px_#D4C2FC] lg:text-5xl">
-          &#9776;
-        </button>
-      )}
+      <Navbar />
 
       <div
         id="hero"
