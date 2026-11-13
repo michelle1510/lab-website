@@ -22,5 +22,13 @@
         "date": "08/19/2026",
         "themes": ["Eye-tracking", "Memory"],
         "img": "/articles/Polynomial_of_degree_three.png"
+    },
+    {
+        "id": 4,
+        "title": "Article 4",
+        "authors": ["Alice", "Charlie"],
+        "date": "09/15/2026",
+        "themes": ["Non Eye-tracking", "Health"],
+        "img": "/articles/bar-chart.png"
     }
 ]
