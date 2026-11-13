@@ -137,7 +137,7 @@ export default function Home() {
             <FeatureCard article={articles[1]}/>
             <FeatureCard article={articles[2]}/>
           </div>
-          <Link className="group self-center font-medium text-primary hover:underline sm:self-end" href="#publications">
+          <Link className="group self-center font-medium text-primary hover:underline sm:self-end" href="/articles">
             Explore more <span aria-hidden="true" className="inline-block transition-transform group-hover:translate-x-1">→</span>
           </Link>
         </div>
